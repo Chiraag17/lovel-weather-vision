@@ -7,7 +7,7 @@ import TemperatureChart from "@/components/TemperatureChart";
 import UnitToggle from "@/components/UnitToggle";
 import { CloudRain } from "lucide-react";
 
-const API_KEY = "YOUR_API_KEY_HERE"; // Replace with your OpenWeatherMap API key
+const API_KEY = "bd48d41be057cc8f7ec155e95f81e2a1";
 const STORAGE_KEY = "lastSearchedCity";
 
 const Index = () => {
@@ -25,11 +25,6 @@ const Index = () => {
   };
 
   const fetchWeatherData = async (city: string) => {
-    if (!API_KEY || API_KEY === "YOUR_API_KEY_HERE") {
-      toast.error("Please add your OpenWeatherMap API key to use this app");
-      return;
-    }
-
     setIsLoading(true);
     try {
       // Fetch current weather
@@ -133,14 +128,14 @@ const Index = () => {
   return (
     <div className="min-h-screen p-4 md:p-8">
       <div className="container mx-auto max-w-7xl">
-        <header className="text-center mb-8 animate-in fade-in-50 duration-500">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <CloudRain className="h-12 w-12 text-primary" />
-            <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+        <header className="text-center mb-12 animate-fade-in-up">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <CloudRain className="h-14 w-14 text-primary animate-float" />
+            <h1 className="text-6xl md:text-7xl font-extrabold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent tracking-tight">
               Weather Dashboard
             </h1>
           </div>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-xl text-muted-foreground font-medium">
             Real-time weather information and 5-day forecast
           </p>
         </header>
@@ -150,13 +145,14 @@ const Index = () => {
         <UnitToggle unit={unit} onToggle={handleUnitToggle} />
 
         {isLoading && (
-          <div className="text-center py-12">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+          <div className="text-center py-16">
+            <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-primary border-t-transparent"></div>
+            <p className="mt-4 text-muted-foreground font-medium">Loading weather data...</p>
           </div>
         )}
 
         {!isLoading && displayWeatherData && (
-          <div className="animate-in fade-in-50 duration-700">
+          <div className="space-y-6">
             <WeatherCard data={displayWeatherData} unit={unit} />
             <ForecastCard data={displayForecastData} unit={unit} />
             <TemperatureChart data={displayChartData} unit={unit} />
@@ -164,9 +160,9 @@ const Index = () => {
         )}
 
         {!weatherData && !isLoading && (
-          <div className="text-center py-12 glass-card rounded-2xl">
-            <CloudRain className="h-24 w-24 text-muted-foreground/50 mx-auto mb-4" />
-            <p className="text-xl text-muted-foreground">
+          <div className="text-center py-16 glass-card rounded-3xl animate-fade-in">
+            <CloudRain className="h-28 w-28 text-muted-foreground/40 mx-auto mb-6 animate-float" />
+            <p className="text-2xl text-muted-foreground font-semibold">
               Search for a city to see the weather
             </p>
           </div>

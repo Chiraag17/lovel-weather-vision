@@ -13,9 +13,11 @@ interface TemperatureChartProps {
 
 const TemperatureChart = ({ data, unit }: TemperatureChartProps) => {
   return (
-    <Card className="glass-card border-0">
+    <Card className="glass-card border-0 animate-fade-in-up">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold">5-Day Temperature Trend</CardTitle>
+        <CardTitle className="text-3xl font-bold tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          5-Day Temperature Trend
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={300}>
